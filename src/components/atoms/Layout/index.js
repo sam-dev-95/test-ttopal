@@ -1,5 +1,11 @@
+import styled from "styled-components";
+
+const StyledLayoutContainer = styled.div`
+  padding: 36px 20px;
+`;
+
 const Layout = ({ children }) => {
-  return <div className="layout-container">{children}</div>;
+  return <StyledLayoutContainer>{children}</StyledLayoutContainer>;
 };
 
 export default Layout;

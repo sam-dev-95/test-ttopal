@@ -6,6 +6,9 @@ const StyledDiv = styled.div`
   border-radius: 8px;
   text-align: center;
   padding: 20px 8px 12px;
+  @media (max-width: 768px) {
+    padding: 24px 12px;
+  }
   h3 {
     color: #1b3460;
   }

@@ -5,7 +5,14 @@ const CustomSelect = styled.div`
   position: relative;
   display: inline-block;
   margin: 16px;
+  @media (max-width: 768px) {
+    margin: 8px;
+  }
   width: 303px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+  text-align: start;
 `;
 
 const SelectInput = styled.div`
@@ -25,9 +32,11 @@ const CustomArrow = styled.span`
 
 const DropdownPanel = styled.div`
   position: absolute;
+  overflow: auto;
   top: 100%;
   left: 0;
   width: 100%;
+  max-height: 600px;
   background-color: #f8f8f8;
   border: 1px solid #ccc;
   border-top: none;
@@ -35,6 +44,7 @@ const DropdownPanel = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 16px 0;
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+  z-index: 2;
 `;
 
 const Option = styled.div`
@@ -46,30 +56,27 @@ const Option = styled.div`
   }
 `;
 
-const SelectFilter = ({ data = {}, option }) => {
+const SelectFilter = ({ data = {}, option, selectItem, currentItem }) => {
   const defaultOption = `All ${option}s`;
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(defaultOption);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const onOptionClick = (item) => {
-    setSelectedItem(item);
+    selectItem(item);
     setIsOpen(false);
   };
 
   return (
     <CustomSelect>
       <SelectInput onClick={toggleDropdown} isOpen={isOpen}>
-        {selectedItem}
+        {!!currentItem ? currentItem : defaultOption}
         <CustomArrow>▼</CustomArrow>
       </SelectInput>
       <DropdownPanel isOpen={isOpen}>
-        <Option onClick={() => onOptionClick(defaultOption)}>
-          {defaultOption}
-        </Option>
+        <Option onClick={() => onOptionClick("")}>{defaultOption}</Option>
         {Object.entries(data).map(([key, items]) => (
           <div key={key}>
             <Option>

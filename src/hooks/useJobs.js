@@ -2,10 +2,13 @@ import React, { useContext, useState, useEffect, useMemo } from "react";
 
 const JobsContext = React.createContext({});
 
+// TODO: need move to this url to env variables
 const apiUrl = "https://api.lever.co/v0/postings/netflix?mode=json";
 
 export const JobsProvider = ({ children }) => {
   const [jobs, setJobs] = useState([]);
+  const [selectedTeam, setSelectedTeam] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -53,15 +56,25 @@ export const JobsProvider = ({ children }) => {
     );
   }, [jobs]);
 
-  console.log("teams", teams);
-  console.log("locations", locations);
+  const filteredJobs = useMemo(() => {
+    return jobs.filter(
+      (item) =>
+        (!selectedLocation || item.categories.location === selectedLocation) &&
+        (!selectedTeam || item.categories.team === selectedTeam)
+    );
+  }, [selectedTeam, selectedLocation, jobs]);
 
   return (
     <JobsContext.Provider
       value={{
         jobs,
+        filteredJobs,
         teams,
         locations,
+        selectedTeam,
+        selectedLocation,
+        setSelectedTeam,
+        setSelectedLocation,
         isLoading,
       }}
     >

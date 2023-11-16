@@ -3,13 +3,29 @@ import { Positions, Filters } from "../components/organisms";
 import { useJobs } from "../hooks/useJobs";
 
 const OpenPositions = () => {
-  const { jobs, teams, locations } = useJobs();
+  const {
+    filteredJobs,
+    teams,
+    locations,
+    selectedTeam,
+    selectedLocation,
+    setSelectedTeam,
+    setSelectedLocation,
+  } = useJobs();
+
   return (
     <div>
       <Title text="Open Positions" option="page" />
-      <Filters teams={teams} locations={locations} />
+      <Filters
+        teams={teams}
+        selectedTeam={selectedTeam}
+        locations={locations}
+        selectedLocation={selectedLocation}
+        selectTeam={setSelectedTeam}
+        selectLocation={setSelectedLocation}
+      />
       <Notification />
-      <Positions items={jobs} />
+      <Positions items={filteredJobs} />
     </div>
   );
 };

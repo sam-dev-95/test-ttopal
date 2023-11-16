@@ -32,6 +32,15 @@ const mockTeams = {
   ],
 };
 
+const mockFn = () => {};
+
 export const Primary = () => (
-  <Filters teams={mockTeams} locations={mockLocations} />
+  <Filters
+    teams={mockTeams}
+    locations={mockLocations}
+    selectTeam={mockFn}
+    selectLocation={mockFn}
+    selectedTeam=""
+    selectedLocation=""
+  />
 );

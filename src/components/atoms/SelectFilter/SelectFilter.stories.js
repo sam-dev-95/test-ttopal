@@ -22,5 +22,10 @@ const mockLocations = {
 };
 
 export const Primary = () => (
-  <SelectFilter data={mockLocations} option="Location" />
+  <SelectFilter
+    data={mockLocations}
+    option="Location"
+    selectItem={() => {}}
+    currentItem=""
+  />
 );

@@ -7,6 +7,10 @@ const StyledTitle = styled.div`
     font-style: ${({ option }) => (option === "job" ? "normal" : "italic")};
     font-size: ${({ option }) =>
       option === "job" ? "18px" : "40px"}; // 40px for page title
+
+    @media (max-width: 768px) {
+      font-size: ${({ option }) => (option === "page" ? "24px" : "18px")};
+    }
   }
 `;
 

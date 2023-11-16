@@ -8,6 +8,9 @@ const StyledButton = styled.button`
   border-radius: 30px;
   color: #173361;
   cursor: pointer;
+  @media (max-width: 768px) {
+    margin: 16px;
+  }
 `;
 
 const Button = ({ children, onClick }) => {

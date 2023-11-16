@@ -1,10 +1,11 @@
-import { Notification, Title } from "../components/atoms";
+import { Notification, Title, LoadingIndicator } from "../components/atoms";
 import { Positions, Filters } from "../components/organisms";
 import { useJobs } from "../hooks/useJobs";
 
 const OpenPositions = () => {
   const {
     filteredJobs,
+    isLoading,
     teams,
     locations,
     selectedTeam,
@@ -25,7 +26,7 @@ const OpenPositions = () => {
         selectLocation={setSelectedLocation}
       />
       <Notification />
-      <Positions items={filteredJobs} />
+      {isLoading ? <LoadingIndicator /> : <Positions items={filteredJobs} />}
     </div>
   );
 };

@@ -7,6 +7,8 @@ const StyledLabel = styled.span`
   @media (max-width: 768px) {
     margin: 4px 10px 20px;
   }
+  font-size: 12px;
+  font-weight: 500;
   border-radius: 4px;
   color: #fff;
   text-transform: uppercase;

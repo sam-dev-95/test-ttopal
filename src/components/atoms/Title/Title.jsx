@@ -3,6 +3,7 @@ import styled from "styled-components";
 const StyledTitle = styled.div`
   h2 {
     color: #173361;
+    margin: 12px 0;
     text-align: ${({ option }) => (option === "job" ? "start" : "center")};
     font-style: ${({ option }) => (option === "job" ? "normal" : "italic")};
     font-size: ${({ option }) =>
